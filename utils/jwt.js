@@ -6,7 +6,7 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 function createAccessToken(user) {
     //exp date
     const expToken = new Date();
-    expToken.setHours(expToken.getHours() + 2);
+    expToken.setHours(expToken.getHours() + 3);
 
     const payload = {
         token_type: 'access',
