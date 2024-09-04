@@ -17,7 +17,7 @@ function asureAuth(req, res, next) {
         if (exp <= currentDate) {
             return res.status(400).send({ msg: 'Token was expired' })
         } else {
-
+            res.status(200).send({ msg: 'Validated Token' })
         }
 
         req.user = payload;

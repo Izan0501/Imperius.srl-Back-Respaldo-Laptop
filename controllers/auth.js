@@ -15,7 +15,7 @@ async function register(req, res) {
 
     if (!password) {
         res.status(401).send({ msg: 'Necessary password' });
-        return;
+        return; 
     }
 
     const user = new User({
