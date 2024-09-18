@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// Static Folder
+// Dinamics image´s Folder
 app.use(express.static('uploads'));
 
 
