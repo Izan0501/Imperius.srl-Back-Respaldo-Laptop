@@ -1,6 +1,3 @@
-
-// req: Recibe client data
-// res: send an answer to client
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('../utils/jwt')
@@ -15,7 +12,7 @@ async function register(req, res) {
 
     if (!password) {
         res.status(401).send({ msg: 'Necessary password' });
-        return; 
+        return;
     }
 
     const user = new User({
@@ -67,7 +64,7 @@ async function login(req, res) {
 
 
     } catch (error) {
-        res.status(500).send({ msg: `Server Error ${error}` });
+        res.status(500).send({ msg: 'Server Error' });
     }
 }
 

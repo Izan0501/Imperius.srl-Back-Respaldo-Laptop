@@ -1,8 +1,8 @@
 const Product = require('../models/product');
+const Order = require('../models/order.js')
 const image = require('../utils/getFileName.js');
 
 //CRUD
-
 async function createProduct(req, res) {
     const newProduct = new Product(req.body);
 
@@ -18,6 +18,7 @@ async function createProduct(req, res) {
         res.status(500).send({ msg: `Error To Save Product ${error}` });
     }
 };
+
 
 async function getProduct(req, res) {
     try {
@@ -58,7 +59,7 @@ async function updateProduct(req, res) {
 
 async function deleteProduct(req, res) {
     const { id } = req.params;
-
+    
     try {
         await Product.findByIdAndDelete(id)
         res.status(200).send({ msg: 'Deleted' })
@@ -67,11 +68,27 @@ async function deleteProduct(req, res) {
     }
 }
 
+async function createOrder(req, res) {
+    const newOrder = new Order(req.body);
+
+    if (req.files.image) {
+        const imagePath = image.getFileName(req.files.image);
+        newOrder.image = imagePath
+    }
+
+    try {
+        await newOrder.save()
+        res.status(200).send({ msg: 'Saved Order' })
+    } catch (error) {
+        res.status(500).send({ msg: `Error To Save Product ${error}` });
+    }
+}
 
 module.exports = {
     createProduct,
     getProduct,
     updateProduct,
     deleteProduct,
-    getSpecificProduct
+    getSpecificProduct,
+    createOrder,
 }
